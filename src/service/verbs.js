@@ -1,20 +1,13 @@
-import axios from "axios";
+import Client from "./instance";
 
-const options = {
-  method: "GET",
-  url: "https://pinterest-video-and-image-downloader.p.rapidapi.com/pinterest",
-  params: {
-    url: "https://in.pinterest.com/pin/1095852521805152932/",
-  },
-  headers: {
-    "x-rapidapi-key": "c7ad3a1f0dmsh93d1a5f5f25a157p167b37jsn96949fa914e8",
-    "x-rapidapi-host": "pinterest-video-and-image-downloader.p.rapidapi.com",
-  },
+export const fetchPinterestData = async (pinterestUrl) => {
+  try {
+    const response = await Client.get("/pinterest", {
+      params: { url: pinterestUrl },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching Pinterest data:", error);
+    throw error;
+  }
 };
-
-try {
-  const response = await axios.request(options);
-  console.log(response.data);
-} catch (error) {
-  console.error(error);
-}

@@ -31,9 +31,9 @@ const Header = () => {
         <div className="relative">
           <FaBell className="w-7 h-7 hover:bg-gray-200 hover:border hover:border-gray-600 hover:text-black p-1 rounded-full cursor-pointer" />
 
-          <span className="absolute -top-0.5 -right-0.5 bg-red-600 text-white w-5 h-4.5 text-sm font-bold px-1 py-0 rounded-full">
-            15
-          </span>
+          <div className="absolute -top-0.5 -right-0.5 bg-red-600 rounded-full w-4 h-4 flex align-items-center">
+            <span className=" text-white text-sm font-bold size-0.5">15</span>
+          </div>
         </div>
         <FaRegComment className="w-7 h-7 hover:bg-gray-200 hover:border hover:border-gray-600 hover:text-black p-1 rounded-full cursor-pointer" />
         <div className="flex items-center gap-2">
