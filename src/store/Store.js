@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import pintReducer from "./slices/PintSlice";
+import pintReducer from "../store/slice/PintSlice";
 
 const store = configureStore({
   reducer: {

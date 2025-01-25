@@ -1,14 +1,18 @@
 import axios from "axios";
-import { BASE_URL } from "./urls";
+import { BASE_URL, IMAGES } from "./urls";
 
-const Client = axios.create({
+const instance = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    "x-rapidapi-key": "c7ad3a1f0dmsh93d1a5f5f25a157p167b37jsn96949fa914e8",
-    "x-rapidapi-host": "pinterest-video-and-image-downloader.p.rapidapi.com",
-    "Content-Type": "application/json",
-    accept: "application/json",
-  },
 });
 
-export default Client;
+export const fetchPinterestPosts = async () => {
+  try {
+    const response = await instance.get(IMAGES);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching Pinterest posts:", error);
+    return [];
+  }
+};
+
+export default instance;

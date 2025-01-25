@@ -1,2 +1,2 @@
-export const BASE_URL =
-  "https://pinterest-video-and-image-downloader.p.rapidapi.com";
+export const BASE_URL = "http://localhost:3000/";
+export const IMAGES = "pinterestPosts";
