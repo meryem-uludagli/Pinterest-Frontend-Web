@@ -1,13 +1,21 @@
 import React from "react";
 import { FaBell, FaRegComment, FaSearch } from "react-icons/fa";
 import { MdPerson, MdArrowDropDown } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center justify-between px-6 py-4 bg-white shadow-sm fixed w-full top-0 z-50">
       <div className="flex items-center gap-6">
-        <img src={Logo} className="h-8" alt="Logo" />
+        <img
+          src={Logo}
+          className="h-8 cursor-pointer"
+          alt="Logo"
+          onClick={() => navigate("/")}
+        />
         <button className="text-sm font-bold text-black hover:bg-gray-200 hover:border-2 hover:border-gray-600 hover:text-black py-2 px-4 rounded-full">
           Home
         </button>
@@ -37,7 +45,10 @@ const Header = () => {
         </div>
         <FaRegComment className="w-7 h-7 hover:bg-gray-200 hover:border hover:border-gray-600 hover:text-black p-1 rounded-full cursor-pointer" />
         <div className="flex items-center gap-2">
-          <MdPerson className="w-7 h-7 hover:bg-gray-200 hover:border hover:border-gray-600 hover:text-black p-1 rounded-full cursor-pointer" />
+          <MdPerson
+            onClick={() => navigate("/profile")}
+            className="w-7 h-7 hover:bg-gray-200 hover:border hover:border-gray-600 hover:text-black p-1 rounded-full cursor-pointer"
+          />
           <MdArrowDropDown className="w-7 h-7 hover:bg-gray-200 hover:border hover:border-gray-600 hover:text-black p-1 rounded-full cursor-pointer" />
         </div>
       </div>
