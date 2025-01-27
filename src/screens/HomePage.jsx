@@ -46,13 +46,13 @@ const HomePage = () => {
       >
         {images.map((image) => (
           <img
-            key={image.id} // Her resme benzersiz anahtar atıyoruz
-            src={image.image} // db.json'daki image URL'si
-            alt={image.title || "Pinterest image"} // Resim açıklaması
+            key={image.id}
+            src={image.image}
+            alt={image.title || "Pinterest image"}
             style={{
-              width: "100%", // Resmin genişliği
-              borderRadius: "10px", // Kenarları yuvarlatıyoruz
-              objectFit: "cover", // Resim alanını doldurmasını sağlıyoruz
+              width: "100%",
+              borderRadius: "10px",
+              objectFit: "cover",
             }}
           />
         ))}
