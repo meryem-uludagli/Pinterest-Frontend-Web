@@ -1,36 +1,33 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { BASE_URL, IMAGES } from "../service/urls";
+import { fetchPins } from "../store/actions/PintAction";
 
 const HomePage = () => {
-  const [images, setImages] = useState([]);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { pins, loading, error } = useSelector((state) => state.pinterest);
+
   useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}${IMAGES}`);
-        setImages(response.data);
-      } catch (err) {
-        setError(err);
-      }
-    };
+    dispatch(fetchPins());
+  }, [dispatch]);
 
-    fetchImages();
-  }, []);
-
-  if (error)
-    return (
-      <p className="text-red-500 text-center mt-10">
-        Bir hata oluştu: {error.message}
-      </p>
-    );
   const handleImageClick = (image) => {
     navigate("/item", { state: { image } });
   };
+
+  if (loading)
+    return (
+      <p className="text-center text-gray-500 mt-10">Veriler yükleniyor...</p>
+    );
+
+  if (error)
+    return (
+      <p className="text-red-500 text-center mt-10">Bir hata oluştu: {error}</p>
+    );
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <Header />
@@ -50,7 +47,7 @@ const HomePage = () => {
       </div>
 
       <div className="px-16 py-10 columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-6">
-        {images.map((image) => (
+        {pins.map((image) => (
           <div
             key={image.id}
             className="mb-6 break-inside-avoid rounded-lg overflow-hidden shadow-lg group relative"
@@ -60,7 +57,6 @@ const HomePage = () => {
               src={image.image}
               alt={image.title || "Pinterest image"}
               className="w-full object-cover cursor-pointer hover:opacity-90"
-              onClick={() => (window.location.href = `/item/${image.id}`)}
             />
 
             <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
