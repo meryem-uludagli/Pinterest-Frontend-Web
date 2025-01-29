@@ -1,18 +1,25 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
+import { useDispatch } from "react-redux";
+import { addImage } from "../store/slice/SavedImageSlice";
 
-const ItemPage = ({ suggestions }) => {
+const ItemPage = () => {
   const { state } = useLocation();
   const { image } = state || {};
+  const dispatch = useDispatch();
 
   if (!image) {
     return (
       <p className="text-center text-red-500 mt-10">
-        Görüntü yüklenemedi. Lütfen geri dönün.
+        The image could not be loaded. Please come back.
       </p>
     );
   }
+
+  const handleSave = () => {
+    dispatch(addImage(image));
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
@@ -37,33 +44,16 @@ const ItemPage = ({ suggestions }) => {
               </p>
             </div>
             <div className="flex justify-between items-center mt-4 text-gray-600 text-xs">
-              <span>❤️ {image.likes || 0} Beğeni</span>
-              <span>💬 {image.comments || 0} Yorum</span>
+              <span>❤️ {image.likes || 0} Likes</span>
+              <span>💬 {image.comments || 0} Comment</span>
             </div>
           </div>
-          <button className="absolute top-7 right-5 bg-transparent text-black border border-red-500 text-m px-2 py-1 rounded-xl hover:bg-red-500 hover:text-white transition-colors">
-            Kaydet
+          <button
+            onClick={handleSave}
+            className="absolute top-7 right-5 bg-transparent text-black border border-red-500 text-m px-2 py-1 rounded-xl hover:bg-red-500 hover:text-white transition-colors"
+          >
+            Save
           </button>
-        </div>
-      </div>
-
-      <div className="w-full max-w-3xl mt-10">
-        <h3 className="text-md font-bold mb-4 text-gray-800">
-          Keşfedilecek Daha Fazla Fikir
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {suggestions?.map((suggestion, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <img
-                src={suggestion.image}
-                alt={suggestion.title || "Suggestion Image"}
-                className="w-full h-32 object-cover"
-              />
-            </div>
-          ))}
         </div>
       </div>
     </div>
