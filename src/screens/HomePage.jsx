@@ -19,13 +19,13 @@ const HomePage = () => {
   };
 
   if (loading)
-    return (
-      <p className="text-center text-gray-500 mt-10">Veriler yükleniyor...</p>
-    );
+    return <p className="text-center text-gray-500 mt-10">Loading data...</p>;
 
   if (error)
     return (
-      <p className="text-red-500 text-center mt-10">Bir hata oluştu: {error}</p>
+      <p className="text-red-500 text-center mt-10">
+        An error occurred: {error}
+      </p>
     );
 
   return (

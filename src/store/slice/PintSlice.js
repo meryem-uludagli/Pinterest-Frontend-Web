@@ -15,7 +15,7 @@ const pintSlice = createSlice({
     builder
       .addCase(fetchPins.pending, (state) => {
         state.loading = true;
-        state.error = null; // Eğer önceki hata varsa sıfırlanır
+        state.error = null;
       })
       .addCase(fetchPins.fulfilled, (state, action) => {
         state.loading = false;

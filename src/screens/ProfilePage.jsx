@@ -46,7 +46,6 @@ const ProfilePage = () => {
         </button>
       </div>
 
-      {/* SAVED SECTION */}
       <div className="w-full max-w-7xl mt-12 mx-auto px-4">
         <h2 className="text-2xl font-bold text-red-500 mb-6">Saved</h2>
 
